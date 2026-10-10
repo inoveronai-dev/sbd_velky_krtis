@@ -29,21 +29,17 @@ export function QuickAccess() {
                 Rýchly prístup
               </h2>
             </div>
-            <ul className="grid sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="grid divide-y divide-line/70 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
               {QUICK_ACCESS.map((item, index) => {
                 const Icon = ICONS[item.icon];
                 const shared =
                   "group flex h-full flex-col gap-3 px-5 py-6 transition-colors hover:bg-warm md:px-7";
-                const border =
-                  index < QUICK_ACCESS.length - 1
-                    ? "border-b border-line/70 sm:border-b-0 lg:border-r"
-                    : "";
-                const midBorder =
-                  index % 2 === 0 && index < QUICK_ACCESS.length - 1
-                    ? "sm:border-r sm:border-line/70 lg:border-r"
-                    : index % 2 === 1 && index < 2
-                      ? "sm:border-b sm:border-line/70 lg:border-b-0"
-                      : "";
+                const borders = [
+                  "sm:border-r sm:border-b sm:border-line/70 lg:border-b-0",
+                  "sm:border-b sm:border-line/70 lg:border-r lg:border-b-0",
+                  "sm:border-r sm:border-line/70 lg:border-r",
+                  "",
+                ][index];
 
                 const content = (
                   <>
@@ -64,7 +60,7 @@ export function QuickAccess() {
                 );
 
                 return (
-                  <li key={item.title} className={`${border} ${midBorder}`}>
+                  <li key={item.title} className={borders}>
                     {item.external ? (
                       <a
                         href={item.href}
