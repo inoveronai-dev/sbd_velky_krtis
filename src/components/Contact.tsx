@@ -7,7 +7,7 @@ export function Contact() {
     <section
       id="kontakt"
       aria-labelledby="contact-heading"
-      className="px-5 pb-20 md:px-8 md:pb-28"
+      className="px-5 pb-16 md:px-8 md:pb-24"
     >
       <div className="mx-auto max-w-content">
         <Reveal>

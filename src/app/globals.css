@@ -74,14 +74,21 @@ body {
       linear-gradient(180deg, #ffffff 0%, var(--warm-white) 100%);
   }
 
+  /* Visible by default. Hidden state only applies after JS adds .reveal-pending. */
   .reveal {
-    opacity: 0;
-    transform: translateY(1.1rem);
-    transition:
-      opacity 0.7s var(--ease-out),
-      transform 0.7s var(--ease-out);
+    opacity: 1;
+    transform: none;
   }
 
+  .reveal.reveal-pending {
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition:
+      opacity 0.55s var(--ease-out),
+      transform 0.55s var(--ease-out);
+  }
+
+  .reveal.reveal-pending.is-visible,
   .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
@@ -103,10 +110,12 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
+  .reveal.reveal-pending,
+  .reveal.reveal-pending.is-visible,
   .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-    transition: none;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 
   .hero-scale {

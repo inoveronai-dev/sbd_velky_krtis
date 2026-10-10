@@ -7,7 +7,7 @@ export function About() {
     <section
       id="o-nas"
       aria-labelledby="about-heading"
-      className="relative overflow-hidden px-5 py-20 md:px-8 md:py-28"
+      className="relative overflow-hidden px-5 py-16 md:px-8 md:py-24"
     >
       <div
         className="pointer-events-none absolute -left-16 top-24 h-64 w-64 rounded-full border border-brand/15"

@@ -12,7 +12,7 @@ export function Services() {
     <section
       id="cinnosti"
       aria-labelledby="services-heading"
-      className="border-y border-line/80 bg-white px-5 py-20 md:px-8 md:py-28"
+      className="border-y border-line/80 bg-white px-5 py-16 md:px-8 md:py-24"
     >
       <div className="mx-auto max-w-content">
         <Reveal>

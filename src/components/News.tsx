@@ -7,7 +7,7 @@ export function News() {
     <section
       id="oznamy"
       aria-labelledby="news-heading"
-      className="relative px-5 py-20 md:px-8 md:py-28"
+      className="relative px-5 py-16 md:px-8 md:py-24"
     >
       <div className="mx-auto max-w-content">
         <Reveal>
