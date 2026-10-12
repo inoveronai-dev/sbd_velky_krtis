@@ -117,11 +117,15 @@ export const QUICK_ACCESS = [
 ] as const;
 
 export const ABOUT = {
-  heading: "Správa bytových domov s dôrazom na každodenné potreby.",
+  heading: "Komplexná správa nehnuteľností.",
   body: [
     "Stavebné bytové družstvo Veľký Krtíš zabezpečuje správu bytových domov v rozsahu technickej údržby a opráv, prevádzky spoločných priestorov, vedenia fondov a vyúčtovania služieb.",
     "Medzi naše povinnosti patrí aj uzatváranie zmlúv na dodávku energií, kontrola technických zariadení, evidencia príjmov a výdavkov a zastupovanie vlastníkov a nájomcov pred orgánmi štátnej správy.",
   ],
+  image: {
+    src: "/images/about-office.png",
+    alt: "Budova so zameraním na správu bytových domov — vizuál k sekcii o komplexnej správe nehnuteľností",
+  },
 } as const;
 
 export const PHOTO_BAND = {

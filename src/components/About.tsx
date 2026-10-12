@@ -26,10 +26,10 @@ export function About() {
                 <path d="M64 18V50" stroke="currentColor" strokeWidth="1.3" />
                 <path d="M90 18V40" stroke="currentColor" strokeWidth="1.3" />
               </svg>
-              <div className="relative aspect-[5/4] overflow-hidden rounded-[1.4rem] shadow-card">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[1.4rem] shadow-card">
                 <Image
-                  src="/images/about.webp"
-                  alt="Obytná zástavba spojená so správou bytových domov SBD Veľký Krtíš"
+                  src={ABOUT.image.src}
+                  alt={ABOUT.image.alt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover object-center transition duration-700 ease-out hover:scale-[1.02]"
@@ -53,7 +53,7 @@ export function About() {
             <p className="section-label">O NÁS</p>
             <h2
               id="about-heading"
-              className="mt-4 max-w-[20ch] text-balance text-[1.85rem] font-bold leading-[1.15] tracking-[-0.025em] text-ink md:text-[2.4rem]"
+              className="mt-4 max-w-[18ch] text-balance text-[1.85rem] font-bold leading-[1.15] tracking-[-0.025em] text-ink md:text-[2.4rem]"
             >
               {ABOUT.heading}
             </h2>
