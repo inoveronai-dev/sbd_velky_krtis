@@ -124,6 +124,13 @@ export const ABOUT = {
   ],
 } as const;
 
+export const PHOTO_BAND = {
+  label: "SPRÁVA BYTOVÝCH DOMOV",
+  heading: "Starostlivosť o spoločné priestory a každodennú prevádzku domu.",
+  ctaLabel: "Viac o našej činnosti",
+  ctaHref: "#cinnosti",
+} as const;
+
 export const SERVICE_GROUPS = [
   {
     id: "technicka",
@@ -175,18 +182,21 @@ export const ANNOUNCEMENTS = [
     title:
       "Na základe ustanovenia § 1 ods. 3 Vyhlášky č. 152/2005 Z. z. boli splnené stanovené poveternostné podmienky. Spoločnosť STEFE THS, s.r.o., ktorá zabezpečuje dodávku tepla, nás informovala, že k dátumu 4. 5. 2026 dochádza k prerušeniu vykurovania v odberných miestach.",
     shortTitle: "Prerušenie vykurovania v odberných miestach",
+    excerpt: "Oznámenie o prerušení vykurovania podľa vyhlášky č. 152/2005 Z. z.",
     dateLabel: "5. mája 2026",
     href: "https://www.sbdvk.sk/oznam/na-zaklade-ustanovenia-%c2%a7-1-ods-3-vyhlasky-c-152-2005-z-z-boli-splnene-stanovene-poveternostne-podmienky-spolocnost-stefe-ths-s-r-o-ktora-zabezpecuje-dodavku-tepla-nas-informovala-ze-k-d/",
   },
   {
     title: "Ceny energií na rok 2026",
     shortTitle: "Ceny energií na rok 2026",
+    excerpt: "Informácie k cenám energií na rok 2026.",
     dateLabel: "19. januára 2026",
     href: "https://www.sbdvk.sk/oznam/ceny-energii-na-rok-2026/",
   },
   {
     title: "Fond prevádzky, údržby a opráv",
     shortTitle: "Fond prevádzky, údržby a opráv",
+    excerpt: "Informácie k fondu prevádzky, údržby a opráv.",
     dateLabel: "14. januára 2026",
     href: "https://www.sbdvk.sk/oznam/fond-prevadzky-udrzby-a-oprav/",
   },

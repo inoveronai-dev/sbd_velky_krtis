@@ -19,70 +19,65 @@ export function QuickAccess() {
   return (
     <section
       aria-labelledby="quick-access-heading"
-      className="relative z-10 -mt-8 px-5 md:-mt-10 md:px-8"
+      className="relative overflow-hidden bg-warm py-16 md:py-20"
     >
-      <div className="mx-auto max-w-content">
+      <div className="pointer-events-none absolute inset-0 arch-lines" aria-hidden="true" />
+      <div className="container-page relative">
         <Reveal>
-          <div className="overflow-hidden rounded-xl border border-line/80 bg-white shadow-soft">
-            <div className="border-b border-line/70 px-5 py-4 md:px-7">
-              <h2 id="quick-access-heading" className="text-sm font-semibold tracking-wide text-brand-deep">
-                Rýchly prístup
-              </h2>
-            </div>
-            <ul className="grid divide-y divide-line/70 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4">
-              {QUICK_ACCESS.map((item, index) => {
-                const Icon = ICONS[item.icon];
-                const shared =
-                  "group flex h-full flex-col gap-3 px-5 py-6 transition-colors hover:bg-warm md:px-7";
-                const borders = [
-                  "sm:border-r sm:border-b sm:border-line/70 lg:border-b-0",
-                  "sm:border-b sm:border-line/70 lg:border-r lg:border-b-0",
-                  "sm:border-r sm:border-line/70 lg:border-r",
-                  "",
-                ][index];
-
-                const content = (
-                  <>
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-soft text-brand">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    <div className="flex flex-1 flex-col">
-                      <span className="text-base font-semibold text-ink">{item.title}</span>
-                      <span className="mt-1.5 text-sm leading-relaxed text-ink-muted">
-                        {item.description}
-                      </span>
-                      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand">
-                        {"download" in item && item.download ? "Stiahnuť" : "Otvoriť"}
-                        <IconArrow className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-                      </span>
-                    </div>
-                  </>
-                );
-
-                return (
-                  <li key={item.title} className={borders}>
-                    {item.external ? (
-                      <a
-                        href={item.href}
-                        className={shared}
-                        rel="noopener noreferrer"
-                        {...("download" in item && item.download
-                          ? { download: true }
-                          : {})}
-                      >
-                        {content}
-                      </a>
-                    ) : (
-                      <a href={item.href} className={shared}>
-                        {content}
-                      </a>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <p className="section-label">RÝCHLY PRÍSTUP</p>
+          <h2
+            id="quick-access-heading"
+            className="mt-3 max-w-2xl text-balance text-[1.75rem] font-bold tracking-[-0.02em] text-ink md:text-[2.15rem]"
+          >
+            Najčastejšie hľadané informácie
+          </h2>
         </Reveal>
+
+        <ul className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          {QUICK_ACCESS.map((item, index) => {
+            const Icon = ICONS[item.icon];
+            const content = (
+              <>
+                <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand-soft text-brand">
+                  <Icon className="h-6 w-6" />
+                </span>
+                <div className="mt-5 flex flex-1 flex-col">
+                  <span className="text-lg font-bold text-ink">{item.title}</span>
+                  <span className="mt-2 text-sm leading-relaxed text-ink-muted">
+                    {item.description}
+                  </span>
+                </div>
+                <span className="mt-6 inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand text-white transition group-hover:translate-x-0.5 group-hover:bg-brand-deep">
+                  <IconArrow className="h-3.5 w-3.5" />
+                </span>
+              </>
+            );
+
+            return (
+              <li key={item.title}>
+                <Reveal delayMs={index * 60}>
+                  {item.external ? (
+                    <a
+                      href={item.href}
+                      className="group card-surface flex h-full flex-col p-6 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)] md:p-7"
+                      rel="noopener noreferrer"
+                      {...("download" in item && item.download ? { download: true } : {})}
+                    >
+                      {content}
+                    </a>
+                  ) : (
+                    <a
+                      href={item.href}
+                      className="group card-surface flex h-full flex-col p-6 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)] md:p-7"
+                    >
+                      {content}
+                    </a>
+                  )}
+                </Reveal>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

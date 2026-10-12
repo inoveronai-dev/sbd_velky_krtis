@@ -1,30 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
-import { NAV, SITE } from "@/lib/content";
+import { SITE } from "@/lib/content";
 
-const FOOTER_LINKS = NAV.filter((item) => item.label !== "Úvod").flatMap((item) =>
-  item.children
-    ? item.children.map((child) => ({
-        label: child.label,
-        href: child.href,
-        external: true as const,
-      }))
-    : [
-        {
-          label: item.label,
-          href: item.href,
-          external: Boolean(item.external),
-        },
-      ],
-);
+const NAV_LINKS = [
+  { label: "Úvod", href: "/", external: false },
+  { label: "Oznamy", href: "https://www.sbdvk.sk/oznamy/", external: true },
+  { label: "Dokumenty a tlačivá", href: "https://www.sbdvk.sk/dokumenty-a-tlaciva/", external: true },
+  { label: "Smernice", href: "https://www.sbdvk.sk/smernice/", external: true },
+  { label: "Kontakt", href: "#kontakt", external: false },
+];
+
+const IMPORTANT_LINKS = [
+  { label: "Reklamačný poriadok", href: "https://www.sbdvk.sk/reklamacny-poriadok/" },
+  { label: "Volebný poriadok", href: "https://www.sbdvk.sk/volebny-poriadok/" },
+  { label: "Domový poriadok", href: "https://www.sbdvk.sk/domovy-poriadok/" },
+  { label: "Uznesenia zo Zhromaždení delegátov", href: "https://www.sbdvk.sk/uznesenia-zo-zhromazdeni-delegatov/" },
+  { label: "Legislatíva", href: "https://www.sbdvk.sk/legislativa/" },
+  { label: "Blog", href: "https://www.sbdvk.sk/blog/" },
+];
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="bg-brand-deep text-white" id="pata">
-      <div className="mx-auto max-w-content px-5 py-14 md:px-8 md:py-16">
-        <div className="grid gap-12 md:grid-cols-[1.1fr_1fr_1fr]">
+      <div className="container-page py-14 md:py-16">
+        <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr_1fr_0.9fr]">
           <div>
             <Link href="/" className="inline-block" aria-label={`${SITE.shortName} — úvod`}>
               <Image
@@ -39,7 +40,7 @@ export function Footer() {
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">
               {SITE.name}
             </p>
-            <p className="mt-4 text-sm text-white/70">
+            <p className="mt-4 text-sm text-white/65">
               {SITE.addressLine1}
               <br />
               {SITE.addressLine2}
@@ -47,9 +48,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="text-sm font-semibold tracking-wide text-white/90">Navigácia</h2>
+            <h2 className="text-sm font-bold tracking-wide text-white">Navigácia</h2>
             <ul className="mt-4 space-y-2.5">
-              {FOOTER_LINKS.slice(0, 8).map((link) => (
+              {NAV_LINKS.map((link) => (
                 <li key={link.label}>
                   {link.external ? (
                     <a
@@ -70,33 +71,54 @@ export function Footer() {
           </div>
 
           <div>
-            <h2 className="text-sm font-semibold tracking-wide text-white/90">Spojenie</h2>
+            <h2 className="text-sm font-bold tracking-wide text-white">Dôležité odkazy</h2>
+            <ul className="mt-4 space-y-2.5">
+              {IMPORTANT_LINKS.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/70 transition hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="relative">
+            <h2 className="text-sm font-bold tracking-wide text-white">Spojenie</h2>
             <ul className="mt-4 space-y-3 text-sm text-white/70">
               <li>
-                <a
-                  href={`mailto:${SITE.email}`}
-                  className="transition hover:text-white"
-                >
+                <a href={`mailto:${SITE.email}`} className="transition hover:text-white">
                   {SITE.email}
                 </a>
               </li>
               <li>
-                <span className="block text-white/55">Sekretariát</span>
                 <a href={SITE.phones.secretariat.href} className="transition hover:text-white">
-                  {SITE.phones.secretariat.display}
+                  Sekretariát: {SITE.phones.secretariat.display}
                 </a>
               </li>
               <li>
-                <span className="block text-white/55">Technický úsek</span>
                 <a href={SITE.phones.technical.href} className="transition hover:text-white">
-                  {SITE.phones.technical.display}
+                  Technický úsek: {SITE.phones.technical.display}
                 </a>
               </li>
             </ul>
+            <svg
+              className="pointer-events-none absolute -bottom-2 right-0 h-24 w-36 text-white/10"
+              viewBox="0 0 160 100"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path d="M12 88V28h28v60M40 88V40h24v48M64 88V22h34v66M98 88V36h26v52M124 88V30h24v58" stroke="currentColor" strokeWidth="1.2" />
+              <path d="M12 88h136" stroke="currentColor" strokeWidth="1.2" />
+            </svg>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-white/15 pt-6 text-xs text-white/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-2 border-t border-white/15 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {SITE.name}
           </p>

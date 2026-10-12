@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { NAV, SITE } from "@/lib/content";
-import { IconChevron, IconClose, IconMenu } from "./Icons";
+import { IconChevron, IconClock, IconClose, IconMail, IconMenu, IconPhone } from "./Icons";
 
 function ExternalOrInternal({
   href,
@@ -12,12 +12,14 @@ function ExternalOrInternal({
   className,
   children,
   onClick,
+  ariaCurrent,
 }: {
   href: string;
   external?: boolean;
   className?: string;
   children: React.ReactNode;
   onClick?: () => void;
+  ariaCurrent?: "page";
 }) {
   if (external) {
     return (
@@ -27,7 +29,7 @@ function ExternalOrInternal({
     );
   }
   return (
-    <Link href={href} className={className} onClick={onClick}>
+    <Link href={href} className={className} onClick={onClick} aria-current={ariaCurrent}>
       {children}
     </Link>
   );
@@ -80,122 +82,141 @@ export function Header() {
   }, [infoOpen]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b transition-[background-color,box-shadow,border-color] duration-300 ${
-        scrolled
-          ? "border-line/80 bg-white/95 shadow-[0_8px_24px_-16px_rgba(24,63,45,0.35)] backdrop-blur-md"
-          : "border-transparent bg-white"
-      }`}
-    >
-      <div className="mx-auto flex h-[4.5rem] max-w-content items-center justify-between gap-4 px-5 md:px-8">
-        <Link href="/" className="relative z-10 shrink-0 py-2" aria-label={`${SITE.shortName} — úvod`}>
-          <Image
-            src="/images/SBDlogo.svg"
-            alt={SITE.shortName}
-            width={118}
-            height={74}
-            priority
-            className="h-12 w-auto md:h-[3.35rem]"
-          />
-        </Link>
-
-        <nav className="hidden items-center xl:flex" aria-label="Hlavná navigácia">
-          <ul className="flex items-center gap-0.5">
-            {NAV.map((item) => {
-              if (item.children) {
-                return (
-                  <li key={item.label} className="relative" ref={infoRef}>
-                    <button
-                      type="button"
-                      className="inline-flex min-h-11 items-center gap-1.5 rounded-md px-3 py-2 text-[0.92rem] font-medium text-ink transition-colors hover:text-brand"
-                      aria-expanded={infoOpen}
-                      aria-controls={infoMenuId}
-                      onClick={() => setInfoOpen((v) => !v)}
-                      onKeyDown={(e) => {
-                        if (e.key === "ArrowDown") {
-                          e.preventDefault();
-                          setInfoOpen(true);
-                        }
-                      }}
-                    >
-                      {item.label}
-                      <IconChevron
-                        className={`h-3 w-3 transition-transform duration-200 ${infoOpen ? "rotate-180" : ""}`}
-                      />
-                    </button>
-                    <ul
-                      id={infoMenuId}
-                      className={`absolute left-0 top-full z-50 min-w-[17rem] origin-top rounded-md border border-line bg-white py-2 shadow-soft transition duration-200 ${
-                        infoOpen
-                          ? "pointer-events-auto translate-y-0 opacity-100"
-                          : "pointer-events-none -translate-y-1 opacity-0"
-                      }`}
-                      role="menu"
-                    >
-                      {item.children.map((child) => (
-                        <li key={child.label} role="none">
-                          <a
-                            href={child.href}
-                            role="menuitem"
-                            className="block px-4 py-2.5 text-sm text-ink transition-colors hover:bg-brand-soft hover:text-brand-deep"
-                            rel="noopener noreferrer"
-                            onClick={() => setInfoOpen(false)}
-                          >
-                            {child.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                );
-              }
-
-              return (
-                <li key={item.label}>
-                  <ExternalOrInternal
-                    href={item.href}
-                    external={item.external}
-                    className="inline-flex min-h-11 items-center rounded-md px-3 py-2 text-[0.92rem] font-medium text-ink transition-colors hover:text-brand"
-                  >
-                    {item.label}
-                  </ExternalOrInternal>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-
-        <div className="flex items-center gap-2">
+    <header className="sticky top-0 z-50">
+      <div className="hidden border-b border-line/70 bg-topbar text-sm text-ink-muted md:block">
+        <div className="container-page flex h-10 items-center justify-between gap-4">
           <a
-            href="#kontakt"
-            className="hidden min-h-11 items-center rounded-md bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-deep focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand sm:inline-flex"
+            href={`mailto:${SITE.email}`}
+            className="inline-flex items-center gap-2 transition hover:text-brand"
           >
-            Kontaktujte nás
+            <IconMail className="h-4 w-4 text-brand" />
+            <span>{SITE.email}</span>
           </a>
-          <button
-            type="button"
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-line text-ink xl:hidden"
-            aria-expanded={mobileOpen}
-            aria-controls={menuId}
-            aria-label={mobileOpen ? "Zavrieť menu" : "Otvoriť menu"}
-            onClick={() => setMobileOpen((v) => !v)}
-          >
-            {mobileOpen ? <IconClose className="h-5 w-5" /> : <IconMenu className="h-5 w-5" />}
-          </button>
+          <p className="inline-flex items-center gap-2">
+            <IconClock className="h-4 w-4 text-brand" />
+            <span>
+              Pondelok {SITE.hours[0].time} · Streda {SITE.hours[1].time}
+            </span>
+          </p>
         </div>
       </div>
 
       <div
-        id={menuId}
-        className={`xl:hidden ${mobileOpen ? "block" : "hidden"}`}
+        className={`border-b bg-white transition-[box-shadow,border-color] duration-300 ${
+          scrolled
+            ? "border-line/80 shadow-[0_8px_24px_-16px_rgba(24,63,45,0.35)]"
+            : "border-line/50"
+        }`}
       >
+        <div className="container-page flex h-[4.35rem] items-center justify-between gap-4 lg:h-[4.75rem]">
+          <Link href="/" className="relative z-10 shrink-0 py-2" aria-label={`${SITE.shortName} — úvod`}>
+            <Image
+              src="/images/SBDlogo.svg"
+              alt={SITE.shortName}
+              width={118}
+              height={74}
+              priority
+              className="h-11 w-auto md:h-12"
+            />
+          </Link>
+
+          <nav className="hidden items-center xl:flex" aria-label="Hlavná navigácia">
+            <ul className="flex items-center gap-0.5">
+              {NAV.map((item) => {
+                if (item.children) {
+                  return (
+                    <li key={item.label} className="relative" ref={infoRef}>
+                      <button
+                        type="button"
+                        className="inline-flex min-h-11 items-center gap-1.5 rounded-md px-2.5 py-2 text-[0.9rem] font-medium text-ink transition-colors hover:text-brand"
+                        aria-expanded={infoOpen}
+                        aria-controls={infoMenuId}
+                        onClick={() => setInfoOpen((v) => !v)}
+                      >
+                        {item.label}
+                        <IconChevron
+                          className={`h-3 w-3 transition-transform duration-200 ${infoOpen ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      <ul
+                        id={infoMenuId}
+                        className={`absolute left-0 top-full z-50 min-w-[17rem] origin-top rounded-xl border border-line bg-white py-2 shadow-soft transition duration-200 ${
+                          infoOpen
+                            ? "pointer-events-auto translate-y-0 opacity-100"
+                            : "pointer-events-none -translate-y-1 opacity-0"
+                        }`}
+                        role="menu"
+                      >
+                        {item.children.map((child) => (
+                          <li key={child.label} role="none">
+                            <a
+                              href={child.href}
+                              role="menuitem"
+                              className="block px-4 py-2.5 text-sm text-ink transition-colors hover:bg-brand-soft hover:text-brand-deep"
+                              rel="noopener noreferrer"
+                              onClick={() => setInfoOpen(false)}
+                            >
+                              {child.label}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  );
+                }
+
+                const isHome = item.href === "/";
+                return (
+                  <li key={item.label}>
+                    <ExternalOrInternal
+                      href={item.href}
+                      external={item.external}
+                      ariaCurrent={isHome ? "page" : undefined}
+                      className={`relative inline-flex min-h-11 items-center rounded-md px-2.5 py-2 text-[0.9rem] font-medium transition-colors hover:text-brand ${
+                        isHome ? "text-brand" : "text-ink"
+                      }`}
+                    >
+                      {item.label}
+                      {isHome && (
+                        <span
+                          className="absolute inset-x-2.5 -bottom-0.5 h-0.5 rounded-full bg-brand"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </ExternalOrInternal>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <a href="#kontakt" className="btn-primary hidden !min-h-11 !px-4 !text-sm sm:inline-flex">
+              <IconPhone className="h-4 w-4" />
+              Kontaktujte nás
+            </a>
+            <button
+              type="button"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line text-ink xl:hidden"
+              aria-expanded={mobileOpen}
+              aria-controls={menuId}
+              aria-label={mobileOpen ? "Zavrieť menu" : "Otvoriť menu"}
+              onClick={() => setMobileOpen((v) => !v)}
+            >
+              {mobileOpen ? <IconClose className="h-5 w-5" /> : <IconMenu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id={menuId} className={`xl:hidden ${mobileOpen ? "block" : "hidden"}`}>
         <div
-          className="fixed inset-0 top-[4.5rem] z-40 bg-ink/30"
+          className="fixed inset-0 top-[4.35rem] z-40 bg-ink/30 md:top-[calc(2.5rem+4.75rem)]"
           aria-hidden="true"
           onClick={() => setMobileOpen(false)}
         />
         <nav
-          className="absolute left-0 right-0 top-[4.5rem] z-50 max-h-[calc(100vh-4.5rem)] overflow-y-auto border-b border-line bg-white px-5 py-4 shadow-soft"
+          className="absolute left-0 right-0 top-[4.35rem] z-50 max-h-[calc(100vh-4.35rem)] overflow-y-auto border-b border-line bg-white px-5 py-4 shadow-soft md:top-[calc(2.5rem+4.75rem)]"
           aria-label="Mobilná navigácia"
         >
           <ul className="flex flex-col gap-1">
@@ -205,7 +226,7 @@ export function Header() {
                   <li key={item.label}>
                     <button
                       type="button"
-                      className="flex min-h-12 w-full items-center justify-between rounded-md px-3 py-2 text-left text-base font-medium text-ink"
+                      className="flex min-h-12 w-full items-center justify-between rounded-lg px-3 py-2 text-left text-base font-medium text-ink"
                       aria-expanded={mobileInfoOpen}
                       onClick={() => setMobileInfoOpen((v) => !v)}
                     >
@@ -239,7 +260,7 @@ export function Header() {
                   <ExternalOrInternal
                     href={item.href}
                     external={item.external}
-                    className="flex min-h-12 items-center rounded-md px-3 py-2 text-base font-medium text-ink hover:bg-brand-soft hover:text-brand-deep"
+                    className="flex min-h-12 items-center rounded-lg px-3 py-2 text-base font-medium text-ink hover:bg-brand-soft hover:text-brand-deep"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}
@@ -250,9 +271,10 @@ export function Header() {
           </ul>
           <a
             href="#kontakt"
-            className="mt-4 flex min-h-12 items-center justify-center rounded-md bg-brand px-4 text-base font-semibold text-white hover:bg-brand-deep"
+            className="btn-primary mt-4 w-full"
             onClick={() => setMobileOpen(false)}
           >
+            <IconPhone className="h-4 w-4" />
             Kontaktujte nás
           </a>
         </nav>

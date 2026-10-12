@@ -12,14 +12,17 @@ export default {
         brand: {
           DEFAULT: "#26702d",
           deep: "#183f2d",
-          soft: "#e8f0e9",
+          mid: "#1f4d34",
+          soft: "#e7f0e8",
+          soft2: "#f0f5f0",
         },
         warm: "#f5f7f2",
+        topbar: "#eef1ec",
         ink: {
-          DEFAULT: "#232725",
-          muted: "#5a635c",
+          DEFAULT: "#1f2421",
+          muted: "#5c655e",
         },
-        line: "#d7ddd6",
+        line: "#d9e0d9",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
@@ -30,8 +33,12 @@ export default {
         content: "72rem",
         narrow: "40rem",
       },
+      borderRadius: {
+        card: "1.25rem",
+      },
       boxShadow: {
-        soft: "0 12px 40px -20px rgba(24, 63, 45, 0.28)",
+        card: "0 14px 40px -18px rgba(24, 63, 45, 0.28)",
+        soft: "0 10px 30px -16px rgba(24, 63, 45, 0.22)",
       },
       transitionTimingFunction: {
         out: "cubic-bezier(0.22, 1, 0.36, 1)",
