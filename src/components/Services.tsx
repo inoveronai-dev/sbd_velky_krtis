@@ -20,7 +20,7 @@ export function Services() {
     <section
       id="cinnosti"
       aria-labelledby="services-heading"
-      className="bg-brand-soft2 py-16 md:py-24"
+      className="bg-gray-light py-16 md:py-24"
     >
       <div className="container-page">
         <Reveal>

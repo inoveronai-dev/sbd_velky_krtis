@@ -3,28 +3,40 @@
 @tailwind utilities;
 
 :root {
+  /* Brand green — accents, buttons, icons, links only */
   --brand: #26702d;
-  --brand-deep: #183f2d;
-  --brand-mid: #1f4d34;
+  --brand-deep: #1f5a24;
   --brand-soft: #e7f0e8;
-  --brand-soft-2: #f0f5f0;
-  --warm-white: #f5f7f2;
-  --ink: #1f2421;
-  --ink-muted: #5c655e;
-  --line: #d9e0d9;
+
+  /* Neutral gray system (logo / original site inspired) */
+  --gray-dark: #414141;
+  --gray: #e8e8e8;
+  --gray-light: #f0f0f0;
   --white: #ffffff;
-  --topbar: #eef1ec;
-  --background: var(--warm-white);
+
+  --ink: #414141;
+  --ink-muted: #6b6b6b;
+  --line: #dcdcdc;
+  --topbar: #e8e8e8;
+  --background: var(--white);
   --foreground: var(--ink);
+
   --radius-card: 1.25rem;
-  --shadow-card: 0 14px 40px -18px rgba(24, 63, 45, 0.28);
-  --shadow-soft: 0 10px 30px -16px rgba(24, 63, 45, 0.22);
+  --shadow-card: 0 14px 40px -18px rgba(65, 65, 65, 0.22);
+  --shadow-soft: 0 10px 30px -16px rgba(65, 65, 65, 0.16);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --container: 72rem;
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6.5rem;
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 8rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -57,7 +69,7 @@ body {
   top: -100%;
   z-index: 100;
   border-radius: 0.5rem;
-  background: var(--brand-deep);
+  background: var(--gray-dark);
   color: white;
   padding: 0.75rem 1rem;
   font-weight: 600;
@@ -103,11 +115,11 @@ body {
   }
 
   .btn-secondary-dark {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-brand/30 bg-white px-6 text-[0.95rem] font-semibold text-brand-deep transition hover:border-brand hover:bg-brand-soft;
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-brand/30 bg-white px-6 text-[0.95rem] font-semibold text-brand transition hover:border-brand hover:bg-brand-soft;
   }
 
   .arch-lines {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360' fill='none'%3E%3Cg stroke='%2326702d' stroke-opacity='0.08' stroke-width='1.2'%3E%3Cpath d='M40 300V80h70v220M110 300V140h55v160M165 300V110h80v190M245 300V160h48v140M320 300V90h90v210M410 300V130h60v170M470 300V100h85v200'/%3E%3Cpath d='M40 300h515'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360' fill='none'%3E%3Cg stroke='%23414141' stroke-opacity='0.08' stroke-width='1.2'%3E%3Cpath d='M40 300V80h70v220M110 300V140h55v160M165 300V110h80v190M245 300V160h48v140M320 300V90h90v210M410 300V130h60v170M470 300V100h85v200'/%3E%3Cpath d='M40 300h515'/%3E%3C/g%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right -40px bottom -20px;
     background-size: min(55vw, 34rem);
@@ -152,6 +164,71 @@ body {
   }
 }
 
+/* Fixed-image parallax window (clipped by section) */
+.parallax-section {
+  position: relative;
+  isolation: isolate;
+  clip-path: inset(0);
+  overflow: clip;
+}
+
+.parallax-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  transform: scale(1.06);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.parallax-media img {
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .parallax-media {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    transform: scale(1.1);
+  }
+}
+
+.parallax-foreground {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-readable {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.55),
+    0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.announcement-track {
+  display: flex;
+  width: max-content;
+  gap: 1.25rem;
+  animation: announcement-scroll 42s linear infinite;
+}
+
+.announcement-viewport:hover .announcement-track,
+.announcement-viewport:focus-within .announcement-track {
+  animation-play-state: paused;
+}
+
+@keyframes announcement-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal,
   .reveal.reveal-pending,
@@ -164,5 +241,19 @@ body {
 
   .hero-scale {
     animation: none;
+  }
+
+  .parallax-media {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
+  }
+
+  .announcement-track {
+    animation: none !important;
+    width: 100%;
+    flex-wrap: nowrap;
   }
 }

@@ -1,8 +1,8 @@
 import { About } from "@/components/About";
-import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { Location } from "@/components/Location";
 import { News } from "@/components/News";
 import { PhotoBand } from "@/components/PhotoBand";
 import { QuickAccess } from "@/components/QuickAccess";
@@ -22,7 +22,7 @@ export default function HomePage() {
         <Services />
         <PhotoBand />
         <News />
-        <Contact />
+        <Location />
       </main>
       <Footer />
     </>

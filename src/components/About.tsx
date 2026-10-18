@@ -32,7 +32,7 @@ export function About() {
                   alt={ABOUT.image.alt}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover object-center transition duration-700 ease-out hover:scale-[1.02]"
+                  className="object-cover object-[42%_40%] transition duration-700 ease-out hover:scale-[1.02] md:object-[38%_38%]"
                 />
               </div>
               <svg

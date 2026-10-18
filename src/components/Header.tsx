@@ -95,7 +95,8 @@ export function Header() {
           <p className="inline-flex items-center gap-2">
             <IconClock className="h-4 w-4 text-brand" />
             <span>
-              Pondelok {SITE.hours[0].time} · Streda {SITE.hours[1].time}
+              Pondelok {SITE.hours[0].slots.join(", ")} · Streda{" "}
+              {SITE.hours[1].slots.join(", ")}
             </span>
           </p>
         </div>

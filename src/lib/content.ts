@@ -12,11 +12,13 @@ export const SITE = {
     technical: { label: "Technický úsek", display: "047/4831208", href: "tel:+421474831208" },
   },
   hours: [
-    { day: "Pondelok", time: "7:30–11:30, 12:00–14:30" },
-    { day: "Streda", time: "7:30–11:30, 12:00–16:00" },
+    { day: "Pondelok", slots: ["7:30–11:30", "12:00–14:30"] },
+    { day: "Streda", slots: ["7:30–11:30", "12:00–16:00"] },
   ],
-  mapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=%C5%BDelezni%C4%8Dn%C3%A1%2018%2C%20990%2001%20Ve%C4%BEk%C3%BD%20Krt%C3%AD%C5%A1",
+  mapsUrl: "https://maps.app.goo.gl/c78aqpkYA2B9RkmeA",
+  /** Verified from the official Google Maps place for SBD Veľký Krtíš */
+  mapsEmbedUrl:
+    "https://maps.google.com/maps?q=48.2061247,19.3576127&hl=sk&z=17&output=embed",
   sourceOrigin: "https://www.sbdvk.sk",
 } as const;
 
@@ -110,7 +112,7 @@ export const QUICK_ACCESS = [
   {
     title: "Kontakt",
     description: "Telefóny, e-mail a stránkové dni sekretariátu.",
-    href: "#kontakt",
+    href: "#strankove-hodiny",
     external: false,
     icon: "contact" as const,
   },
@@ -123,16 +125,24 @@ export const ABOUT = {
     "Medzi naše povinnosti patrí aj uzatváranie zmlúv na dodávku energií, kontrola technických zariadení, evidencia príjmov a výdavkov a zastupovanie vlastníkov a nájomcov pred orgánmi štátnej správy.",
   ],
   image: {
-    src: "/images/about-office.png",
-    alt: "Budova so zameraním na správu bytových domov — vizuál k sekcii o komplexnej správe nehnuteľností",
+    src: "/images/alt-building.webp",
+    alt: "Bytový dom v správe SBD Veľký Krtíš",
   },
 } as const;
 
 export const PHOTO_BAND = {
-  label: "SPRÁVA BYTOVÝCH DOMOV",
   heading: "Starostlivosť o spoločné priestory a každodennú prevádzku domu.",
   ctaLabel: "Viac o našej činnosti",
   ctaHref: "#cinnosti",
+  image: {
+    src: "/images/hero-building.webp",
+    alt: "Bytový dom v správe SBD Veľký Krtíš — pohľad z ulice",
+  },
+} as const;
+
+export const HERO_IMAGE = {
+  src: "/images/hero-aerial.webp",
+  alt: "Letecký pohľad na Veľký Krtíš a okolitú krajinu",
 } as const;
 
 export const SERVICE_GROUPS = [

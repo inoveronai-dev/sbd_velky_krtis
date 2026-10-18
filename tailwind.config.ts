@@ -11,18 +11,21 @@ export default {
       colors: {
         brand: {
           DEFAULT: "#26702d",
-          deep: "#183f2d",
-          mid: "#1f4d34",
+          deep: "#1f5a24",
           soft: "#e7f0e8",
-          soft2: "#f0f5f0",
         },
-        warm: "#f5f7f2",
-        topbar: "#eef1ec",
+        gray: {
+          dark: "#414141",
+          DEFAULT: "#e8e8e8",
+          light: "#f0f0f0",
+        },
+        warm: "#f0f0f0",
+        topbar: "#e8e8e8",
         ink: {
-          DEFAULT: "#1f2421",
-          muted: "#5c655e",
+          DEFAULT: "#414141",
+          muted: "#6b6b6b",
         },
-        line: "#d9e0d9",
+        line: "#dcdcdc",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
@@ -37,8 +40,8 @@ export default {
         card: "1.25rem",
       },
       boxShadow: {
-        card: "0 14px 40px -18px rgba(24, 63, 45, 0.28)",
-        soft: "0 10px 30px -16px rgba(24, 63, 45, 0.22)",
+        card: "0 14px 40px -18px rgba(65, 65, 65, 0.22)",
+        soft: "0 10px 30px -16px rgba(65, 65, 65, 0.16)",
       },
       transitionTimingFunction: {
         out: "cubic-bezier(0.22, 1, 0.36, 1)",

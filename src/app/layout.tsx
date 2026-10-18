@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sk">
-      <body className={`${manrope.variable} bg-warm font-sans antialiased`}>
+      <body className={`${manrope.variable} bg-white font-sans antialiased`}>
         {children}
       </body>
     </html>
