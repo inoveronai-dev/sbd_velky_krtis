@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SITE } from "@/lib/content";
+import { DemoLink } from "./DemoLink";
 
 const NAV_LINKS = [
   { label: "Úvod", href: "/", external: false },
@@ -48,19 +49,13 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
-                  {link.external ? (
-                    <a
-                      href={link.href}
-                      rel="noopener noreferrer"
-                      className="text-sm text-white/70 transition hover:text-white"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <a href={link.href} className="text-sm text-white/70 transition hover:text-white">
-                      {link.label}
-                    </a>
-                  )}
+                  <DemoLink
+                    href={link.href}
+                    external={link.external}
+                    className="text-sm text-white/70 transition hover:text-white"
+                  >
+                    {link.label}
+                  </DemoLink>
                 </li>
               ))}
             </ul>
@@ -71,13 +66,13 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5">
               {IMPORTANT_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <DemoLink
                     href={link.href}
-                    rel="noopener noreferrer"
+                    external
                     className="text-sm text-white/70 transition hover:text-white"
                   >
                     {link.label}
-                  </a>
+                  </DemoLink>
                 </li>
               ))}
             </ul>

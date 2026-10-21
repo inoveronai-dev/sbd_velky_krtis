@@ -1,4 +1,5 @@
 import { QUICK_ACCESS, SITE } from "@/lib/content";
+import { DemoLink } from "./DemoLink";
 import { SectionHeading } from "./SectionHeading";
 import {
   IconArrow,
@@ -148,23 +149,14 @@ export function QuickAccess() {
               return (
                 <li key={item.title} className="min-h-0">
                   <Reveal delayMs={index * 50} className="h-full">
-                    {item.external ? (
-                      <a
-                        href={item.href}
-                        className="group card-surface flex h-full flex-col border border-line/50 p-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)] md:p-6"
-                        rel="noopener noreferrer"
-                        {...("download" in item && item.download ? { download: true } : {})}
-                      >
-                        {content}
-                      </a>
-                    ) : (
-                      <a
-                        href={item.href}
-                        className="group card-surface flex h-full flex-col border border-line/50 p-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)] md:p-6"
-                      >
-                        {content}
-                      </a>
-                    )}
+                    <DemoLink
+                      href={item.href}
+                      external={item.external}
+                      download={"download" in item && item.download ? true : undefined}
+                      className="group card-surface flex h-full flex-col border border-line/50 p-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)] md:p-6"
+                    >
+                      {content}
+                    </DemoLink>
                   </Reveal>
                 </li>
               );

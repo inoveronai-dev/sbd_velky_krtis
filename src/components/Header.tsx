@@ -4,36 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { NAV, SITE } from "@/lib/content";
+import { DemoLink } from "./DemoLink";
 import { IconChevron, IconClose, IconMenu, IconPhone } from "./Icons";
-
-function ExternalOrInternal({
-  href,
-  external,
-  className,
-  children,
-  onClick,
-  ariaCurrent,
-}: {
-  href: string;
-  external?: boolean;
-  className?: string;
-  children: React.ReactNode;
-  onClick?: () => void;
-  ariaCurrent?: "page";
-}) {
-  if (external) {
-    return (
-      <a href={href} className={className} onClick={onClick} rel="noopener noreferrer">
-        {children}
-      </a>
-    );
-  }
-  return (
-    <Link href={href} className={className} onClick={onClick} aria-current={ariaCurrent}>
-      {children}
-    </Link>
-  );
-}
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -82,11 +54,9 @@ export function Header() {
   }, [infoOpen]);
 
   const onHero = !scrolled && !mobileOpen;
-  const navText = onHero ? "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]" : "text-ink";
-  const navHover = onHero ? "hover:text-white/90" : "hover:text-brand";
-  const homeActive = onHero
-    ? "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]"
-    : "text-brand";
+  const navText = onHero ? "nav-link-hero text-white" : "text-ink";
+  const navHover = onHero ? "hover:text-white" : "hover:text-brand";
+  const homeActive = onHero ? "nav-link-hero text-white" : "text-brand";
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
@@ -101,17 +71,19 @@ export function Header() {
           <Link
             href="/"
             className={`relative z-10 shrink-0 rounded-xl py-1.5 transition ${
-              onHero ? "bg-white/92 px-2.5 shadow-soft backdrop-blur-sm" : "px-0"
+              onHero
+                ? "bg-white/95 px-3 shadow-[0_4px_18px_-6px_rgba(0,0,0,0.35)] ring-1 ring-white/70 backdrop-blur-sm"
+                : "px-0"
             }`}
             aria-label={`${SITE.shortName} — úvod`}
           >
             <Image
               src="/images/SBDlogo.svg"
               alt={SITE.shortName}
-              width={118}
-              height={74}
+              width={140}
+              height={88}
               priority
-              className="h-9 w-auto md:h-10"
+              className="h-11 w-auto md:h-12 lg:h-[3.25rem]"
             />
           </Link>
 
@@ -144,15 +116,15 @@ export function Header() {
                       >
                         {item.children.map((child) => (
                           <li key={child.label} role="none">
-                            <a
+                            <DemoLink
                               href={child.href}
+                              external={child.external}
                               role="menuitem"
                               className="block px-4 py-2.5 text-sm text-ink transition-colors hover:bg-brand-soft hover:text-brand-deep"
-                              rel="noopener noreferrer"
                               onClick={() => setInfoOpen(false)}
                             >
                               {child.label}
-                            </a>
+                            </DemoLink>
                           </li>
                         ))}
                       </ul>
@@ -163,7 +135,7 @@ export function Header() {
                 const isHome = item.href === "/";
                 return (
                   <li key={item.label}>
-                    <ExternalOrInternal
+                    <DemoLink
                       href={item.href}
                       external={item.external}
                       ariaCurrent={isHome ? "page" : undefined}
@@ -180,7 +152,7 @@ export function Header() {
                           aria-hidden="true"
                         />
                       )}
-                    </ExternalOrInternal>
+                    </DemoLink>
                   </li>
                 );
               })}
@@ -192,7 +164,7 @@ export function Header() {
               href="#kontakt"
               className={
                 onHero
-                  ? "hidden min-h-10 items-center justify-center gap-2 rounded-full border border-white/35 bg-white/12 px-4 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/22 sm:inline-flex"
+                  ? "nav-link-hero hidden min-h-10 items-center justify-center gap-2 rounded-full border border-white/70 bg-white/18 px-4 text-sm font-semibold text-white shadow-[0_2px_10px_rgba(0,0,0,0.2)] backdrop-blur-sm transition hover:bg-white/28 sm:inline-flex"
                   : "btn-primary hidden !min-h-10 !px-4 !text-sm sm:inline-flex"
               }
             >
@@ -203,7 +175,7 @@ export function Header() {
               type="button"
               className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border xl:hidden ${
                 onHero
-                  ? "border-white/40 bg-white/12 text-white backdrop-blur-sm"
+                  ? "nav-link-hero border-white/70 bg-white/18 text-white shadow-[0_2px_10px_rgba(0,0,0,0.2)] backdrop-blur-sm"
                   : "border-line text-ink"
               }`}
               aria-expanded={mobileOpen}
@@ -247,14 +219,14 @@ export function Header() {
                       <ul className="mb-2 ml-3 border-l border-line pl-3">
                         {item.children.map((child) => (
                           <li key={child.label}>
-                            <a
+                            <DemoLink
                               href={child.href}
+                              external={child.external}
                               className="flex min-h-11 items-center px-2 py-2 text-sm text-ink-muted hover:text-brand"
-                              rel="noopener noreferrer"
                               onClick={() => setMobileOpen(false)}
                             >
                               {child.label}
-                            </a>
+                            </DemoLink>
                           </li>
                         ))}
                       </ul>
@@ -265,14 +237,14 @@ export function Header() {
 
               return (
                 <li key={item.label}>
-                  <ExternalOrInternal
+                  <DemoLink
                     href={item.href}
                     external={item.external}
                     className="flex min-h-12 items-center rounded-lg px-3 py-2 text-base font-medium text-ink hover:bg-brand-soft hover:text-brand-deep"
                     onClick={() => setMobileOpen(false)}
                   >
                     {item.label}
-                  </ExternalOrInternal>
+                  </DemoLink>
                 </li>
               );
             })}

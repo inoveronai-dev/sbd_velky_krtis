@@ -10,35 +10,27 @@ export function Hero() {
       <ParallaxMedia
         src={HERO_IMAGE.src}
         alt={HERO_IMAGE.alt}
-        /* Bias crop toward town on the right; leave darker left for headline */
-        objectPosition="72% 42%"
+        /* Bias left so calm fields/forest sit under the headline; town stays in view */
+        objectPosition="40% 38%"
         priority
-        className="max-md:[&_img]:object-[62%_40%] md:[&_img]:object-[72%_42%]"
+        className="max-md:[&_img]:object-[46%_42%] md:[&_img]:object-[40%_38%]"
       />
 
-      {/* Top scrim for overlay nav contrast; left gradient for headline readability */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-28 bg-gradient-to-b from-black/45 via-black/20 to-transparent md:h-32"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-black/74 via-black/36 to-transparent max-md:from-black/80 max-md:via-black/48 md:via-black/30 lg:from-black/70"
-        aria-hidden="true"
-      />
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-1/3 bg-gradient-to-t from-black/30 to-transparent md:h-1/5 md:from-black/15"
-        aria-hidden="true"
-      />
+      {/* Soft left readability gradient — keeps center/right of the photo bright */}
+      <div className="pointer-events-none absolute inset-0 z-[1] hero-side-overlay" aria-hidden="true" />
 
-      <div className="parallax-foreground container-page relative z-[2] flex min-h-[min(88vw,36rem)] flex-col justify-end pb-14 pt-28 md:min-h-[42rem] md:justify-center md:pb-20 md:pt-28 lg:min-h-[46rem]">
-        <div className="hero-readable max-w-[38rem] text-white">
+      {/* Top nav readability gradient — fades out within ~200px; does not affect headline area */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] hero-nav-overlay" aria-hidden="true" />
+
+      <div className="parallax-foreground container-page relative z-[2] flex min-h-[min(88vw,36rem)] flex-col justify-end pb-12 pt-28 md:min-h-[42rem] md:justify-center md:pb-20 md:pt-28 lg:min-h-[46rem]">
+        <div className="hero-copy relative max-w-[34rem] text-left text-white md:max-w-[38rem]">
           <h1
             id="hero-heading"
-            className="text-balance text-[2.2rem] font-bold leading-[1.08] tracking-[-0.03em] sm:text-[2.85rem] md:text-[3.4rem] lg:text-[3.7rem]"
+            className="text-balance text-[2.15rem] font-extrabold leading-[1.08] tracking-[-0.03em] sm:text-[2.75rem] md:text-[3.35rem] lg:text-[3.6rem]"
           >
             {SITE.name}
           </h1>
-          <p className="mt-6 max-w-[32rem] text-[1.05rem] leading-[1.55] text-white/95 sm:text-[1.2rem]">
+          <p className="mt-7 max-w-[30rem] text-[1.05rem] font-medium leading-[1.55] text-white/95 sm:mt-8 sm:text-[1.2rem]">
             {SITE.tagline}
           </p>
         </div>

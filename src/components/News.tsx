@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { ALL_ANNOUNCEMENTS_URL, ANNOUNCEMENTS } from "@/lib/content";
+import { DemoLink } from "./DemoLink";
 import { IconArrow } from "./Icons";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
@@ -14,9 +15,9 @@ function AnnouncementCard({
   inertClone?: boolean;
 }) {
   return (
-    <a
+    <DemoLink
       href={item.href}
-      rel="noopener noreferrer"
+      external
       className="group flex w-[min(85vw,20.5rem)] shrink-0 flex-col rounded-card border border-line/60 bg-gray-soft p-6 transition hover:-translate-y-0.5 hover:border-brand/20 hover:bg-white hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)]"
       title={item.title}
       tabIndex={inertClone ? -1 : undefined}
@@ -35,7 +36,7 @@ function AnnouncementCard({
         Čítať oznam
         <IconArrow className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
       </span>
-    </a>
+    </DemoLink>
   );
 }
 
@@ -80,14 +81,14 @@ export function News() {
                 { text: "oznamy", accent: true },
               ]}
             />
-            <a
+            <DemoLink
               href={ALL_ANNOUNCEMENTS_URL}
-              rel="noopener noreferrer"
+              external
               className="group inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand"
             >
               Všetky oznamy
               <IconArrow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </a>
+            </DemoLink>
           </div>
         </Reveal>
       </div>

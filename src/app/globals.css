@@ -161,6 +161,77 @@ body {
     0 4px 18px rgba(0, 0, 0, 0.4);
 }
 
+/* Subtle top gradient behind transparent navigation only */
+.hero-nav-overlay {
+  height: 210px;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 14, 16, 0.45) 0%,
+    rgba(12, 14, 16, 0.28) 28%,
+    rgba(12, 14, 16, 0.12) 55%,
+    rgba(12, 14, 16, 0.03) 78%,
+    transparent 100%
+  );
+}
+
+@media (max-width: 767px) {
+  .hero-nav-overlay {
+    height: 190px;
+    background: linear-gradient(
+      180deg,
+      rgba(12, 14, 16, 0.45) 0%,
+      rgba(12, 14, 16, 0.3) 30%,
+      rgba(12, 14, 16, 0.12) 56%,
+      rgba(12, 14, 16, 0.03) 80%,
+      transparent 100%
+    );
+  }
+}
+
+/* Soft left-side hero overlay — image has no heavy baked darkening */
+.hero-side-overlay {
+  background: linear-gradient(
+    90deg,
+    rgba(12, 14, 16, 0.42) 0%,
+    rgba(12, 14, 16, 0.22) 30%,
+    rgba(12, 14, 16, 0.06) 48%,
+    transparent 58%
+  );
+}
+
+@media (max-width: 767px) {
+  .hero-side-overlay {
+    background: linear-gradient(
+      105deg,
+      rgba(12, 14, 16, 0.45) 0%,
+      rgba(12, 14, 16, 0.25) 32%,
+      rgba(12, 14, 16, 0.08) 50%,
+      transparent 60%
+    );
+  }
+}
+
+.nav-link-hero {
+  text-shadow:
+    0 0 1px rgba(0, 0, 0, 0.55),
+    0 1px 2px rgba(0, 0, 0, 0.6),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.hero-copy {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.65),
+    0 2px 8px rgba(0, 0, 0, 0.45),
+    0 8px 22px rgba(0, 0, 0, 0.3);
+}
+
+.hero-copy p {
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.6),
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
 .photo-band-overlay {
   background: linear-gradient(
     90deg,
