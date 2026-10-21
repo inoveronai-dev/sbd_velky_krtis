@@ -16,7 +16,11 @@ export function Hero() {
         className="max-md:[&_img]:object-[62%_40%] md:[&_img]:object-[72%_42%]"
       />
 
-      {/* Neutral dark-gray readability gradient — left only, fades to clear */}
+      {/* Top scrim for overlay nav contrast; left gradient for headline readability */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-28 bg-gradient-to-b from-black/45 via-black/20 to-transparent md:h-32"
+        aria-hidden="true"
+      />
       <div
         className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-black/74 via-black/36 to-transparent max-md:from-black/80 max-md:via-black/48 md:via-black/30 lg:from-black/70"
         aria-hidden="true"
@@ -26,7 +30,7 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      <div className="parallax-foreground container-page relative z-[2] flex min-h-[min(88vw,36rem)] flex-col justify-end pb-14 pt-24 md:min-h-[42rem] md:justify-center md:pb-20 md:pt-16 lg:min-h-[46rem]">
+      <div className="parallax-foreground container-page relative z-[2] flex min-h-[min(88vw,36rem)] flex-col justify-end pb-14 pt-28 md:min-h-[42rem] md:justify-center md:pb-20 md:pt-28 lg:min-h-[46rem]">
         <div className="hero-readable max-w-[38rem] text-white">
           <h1
             id="hero-heading"

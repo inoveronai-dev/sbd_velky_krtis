@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ALL_ANNOUNCEMENTS_URL, ANNOUNCEMENTS } from "@/lib/content";
 import { IconArrow } from "./Icons";
 import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
 function AnnouncementCard({
   item,
@@ -16,7 +17,7 @@ function AnnouncementCard({
     <a
       href={item.href}
       rel="noopener noreferrer"
-      className="group card-surface flex w-[min(85vw,20.5rem)] shrink-0 flex-col p-6 transition hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)]"
+      className="group flex w-[min(85vw,20.5rem)] shrink-0 flex-col rounded-card border border-line/60 bg-gray-soft p-6 transition hover:-translate-y-0.5 hover:border-brand/20 hover:bg-white hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)]"
       title={item.title}
       tabIndex={inertClone ? -1 : undefined}
       aria-hidden={inertClone || undefined}
@@ -66,20 +67,19 @@ export function News() {
     <section
       id="oznamy"
       aria-labelledby="news-heading"
-      className="overflow-hidden bg-gray-light py-16 md:py-24"
+      className="overflow-hidden bg-white py-16 md:py-24"
     >
       <div className="container-page">
         <Reveal>
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="section-label">AKTUÁLNE</p>
-              <h2
-                id="news-heading"
-                className="mt-3 text-[1.75rem] font-bold tracking-[-0.02em] text-ink md:text-[2.2rem]"
-              >
-                Aktuálne oznamy
-              </h2>
-            </div>
+            <SectionHeading
+              id="news-heading"
+              align="left"
+              parts={[
+                { text: "Aktuálne " },
+                { text: "oznamy", accent: true },
+              ]}
+            />
             <a
               href={ALL_ANNOUNCEMENTS_URL}
               rel="noopener noreferrer"
@@ -138,11 +138,9 @@ export function News() {
               Posúvajúci sa zoznam aktuálnych oznamov
             </span>
             <div className="announcement-track pl-5 md:pl-[max(1.25rem,calc((100vw-72rem)/2+2rem))]">
-              {/* Primary set — real announcements */}
               {ANNOUNCEMENTS.map((item) => (
                 <AnnouncementCard key={item.href} item={item} />
               ))}
-              {/* Visual clone for seamless loop — hidden from AT and tab order */}
               {ANNOUNCEMENTS.map((item) => (
                 <AnnouncementCard key={`clone-${item.href}`} item={item} inertClone />
               ))}

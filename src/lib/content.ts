@@ -16,9 +16,11 @@ export const SITE = {
     { day: "Streda", slots: ["7:30–11:30", "12:00–16:00"] },
   ],
   mapsUrl: "https://maps.app.goo.gl/c78aqpkYA2B9RkmeA",
-  /** Verified from the official Google Maps place for SBD Veľký Krtíš */
+  /**
+   * Official address embed from sbdvk.sk/kontakt (Železničná 18, Veľký Krtíš).
+   */
   mapsEmbedUrl:
-    "https://maps.google.com/maps?q=48.2061247,19.3576127&hl=sk&z=17&output=embed",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2659.025322657969!2d19.352741792370587!3d48.206128172267434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476aa8766fabffff%3A0xe0c295fbf9edad68!2zxb1lbGV6bmnEjW7DoSAxOCwgOTkwIDAxIFZlxL5rw70gS3J0w63FoQ!5e0!3m2!1ssk!2ssk!4v1692878068538!5m2!1ssk!2ssk",
   sourceOrigin: "https://www.sbdvk.sk",
 } as const;
 
@@ -29,7 +31,7 @@ export type NavItem = {
   children?: { label: string; href: string; external?: boolean }[];
 };
 
-/** Verified outgoing links to the official sbdvk.sk site for pages not built in this prototype. */
+/** Compact desktop nav — remaining destinations live under Informácie. */
 export const NAV: NavItem[] = [
   { label: "Úvod", href: "/" },
   {
@@ -61,26 +63,26 @@ export const NAV: NavItem[] = [
         href: "https://www.sbdvk.sk/uznesenia-zo-zhromazdeni-delegatov/",
         external: true,
       },
+      {
+        label: "Smernice",
+        href: "https://www.sbdvk.sk/smernice/",
+        external: true,
+      },
+      {
+        label: "Blog",
+        href: "https://www.sbdvk.sk/blog/",
+        external: true,
+      },
+      {
+        label: "Legislatíva",
+        href: "https://www.sbdvk.sk/legislativa/",
+        external: true,
+      },
     ],
   },
   {
-    label: "Dokumenty a tlačivá",
+    label: "Dokumenty",
     href: "https://www.sbdvk.sk/dokumenty-a-tlaciva/",
-    external: true,
-  },
-  {
-    label: "Smernice",
-    href: "https://www.sbdvk.sk/smernice/",
-    external: true,
-  },
-  {
-    label: "Blog",
-    href: "https://www.sbdvk.sk/blog/",
-    external: true,
-  },
-  {
-    label: "Legislatíva",
-    href: "https://www.sbdvk.sk/legislativa/",
     external: true,
   },
   { label: "Kontakt", href: "#kontakt" },

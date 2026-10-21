@@ -7,6 +7,7 @@ import {
   IconPeople,
 } from "./Icons";
 import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
 const GROUP_ICONS = {
   technicka: IconGear,
@@ -20,18 +21,19 @@ export function Services() {
     <section
       id="cinnosti"
       aria-labelledby="services-heading"
-      className="bg-gray-light py-16 md:py-24"
+      className="bg-gray-soft py-16 md:py-24"
     >
       <div className="container-page">
         <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="section-label justify-center">NAŠE SLUŽBY</p>
-            <h2
+          <div className="mx-auto max-w-3xl">
+            <SectionHeading
               id="services-heading"
-              className="mt-3 text-balance text-[1.75rem] font-bold leading-[1.2] tracking-[-0.02em] text-ink md:text-[2.25rem]"
-            >
-              Hlavné činnosti SBD Veľký Krtíš pri zabezpečovaní správy
-            </h2>
+              parts={[
+                { text: "Hlavné činnosti " },
+                { text: "SBD Veľký Krtíš", accent: true },
+                { text: " pri zabezpečovaní správy" },
+              ]}
+            />
           </div>
         </Reveal>
 
@@ -40,7 +42,7 @@ export function Services() {
             const Icon = GROUP_ICONS[group.id as keyof typeof GROUP_ICONS] ?? IconGear;
             return (
               <Reveal key={group.id} delayMs={groupIndex * 70}>
-                <article className="card-surface flex h-full flex-col p-6 md:p-7">
+                <article className="card-surface flex h-full flex-col border border-line/40 p-6 md:p-7">
                   <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-brand">
                     <Icon className="h-6 w-6" />
                   </span>

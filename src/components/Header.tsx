@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { NAV, SITE } from "@/lib/content";
-import { IconChevron, IconClock, IconClose, IconMail, IconMenu, IconPhone } from "./Icons";
+import { IconChevron, IconClose, IconMenu, IconPhone } from "./Icons";
 
 function ExternalOrInternal({
   href,
@@ -45,7 +45,7 @@ export function Header() {
   const infoMenuId = useId();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -81,43 +81,37 @@ export function Header() {
     return () => document.removeEventListener("mousedown", onPointer);
   }, [infoOpen]);
 
-  return (
-    <header className="sticky top-0 z-50">
-      <div className="hidden border-b border-line/70 bg-topbar text-sm text-ink-muted md:block">
-        <div className="container-page flex h-10 items-center justify-between gap-4">
-          <a
-            href={`mailto:${SITE.email}`}
-            className="inline-flex items-center gap-2 transition hover:text-brand"
-          >
-            <IconMail className="h-4 w-4 text-brand" />
-            <span>{SITE.email}</span>
-          </a>
-          <p className="inline-flex items-center gap-2">
-            <IconClock className="h-4 w-4 text-brand" />
-            <span>
-              Pondelok {SITE.hours[0].slots.join(", ")} · Streda{" "}
-              {SITE.hours[1].slots.join(", ")}
-            </span>
-          </p>
-        </div>
-      </div>
+  const onHero = !scrolled && !mobileOpen;
+  const navText = onHero ? "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]" : "text-ink";
+  const navHover = onHero ? "hover:text-white/90" : "hover:text-brand";
+  const homeActive = onHero
+    ? "text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]"
+    : "text-brand";
 
+  return (
+    <header className="fixed inset-x-0 top-0 z-50">
       <div
-        className={`border-b bg-white transition-[box-shadow,border-color] duration-300 ${
-          scrolled
-            ? "border-line/80 shadow-[0_8px_24px_-16px_rgba(24,63,45,0.35)]"
-            : "border-line/50"
+        className={`transition-[background-color,box-shadow,border-color,backdrop-filter] duration-300 ease-out ${
+          onHero
+            ? "border-b border-transparent bg-transparent"
+            : "border-b border-line/80 bg-white/95 shadow-nav backdrop-blur-md"
         }`}
       >
-        <div className="container-page flex h-[4.35rem] items-center justify-between gap-4 lg:h-[4.75rem]">
-          <Link href="/" className="relative z-10 shrink-0 py-2" aria-label={`${SITE.shortName} — úvod`}>
+        <div className="container-page flex h-[4.25rem] items-center justify-between gap-4 md:h-[4.5rem]">
+          <Link
+            href="/"
+            className={`relative z-10 shrink-0 rounded-xl py-1.5 transition ${
+              onHero ? "bg-white/92 px-2.5 shadow-soft backdrop-blur-sm" : "px-0"
+            }`}
+            aria-label={`${SITE.shortName} — úvod`}
+          >
             <Image
               src="/images/SBDlogo.svg"
               alt={SITE.shortName}
               width={118}
               height={74}
               priority
-              className="h-11 w-auto md:h-12"
+              className="h-9 w-auto md:h-10"
             />
           </Link>
 
@@ -129,7 +123,7 @@ export function Header() {
                     <li key={item.label} className="relative" ref={infoRef}>
                       <button
                         type="button"
-                        className="inline-flex min-h-11 items-center gap-1.5 rounded-md px-2.5 py-2 text-[0.9rem] font-medium text-ink transition-colors hover:text-brand"
+                        className={`inline-flex min-h-11 items-center gap-1.5 rounded-md px-2.5 py-2 text-[0.9rem] font-medium transition-colors ${navText} ${navHover}`}
                         aria-expanded={infoOpen}
                         aria-controls={infoMenuId}
                         onClick={() => setInfoOpen((v) => !v)}
@@ -173,14 +167,16 @@ export function Header() {
                       href={item.href}
                       external={item.external}
                       ariaCurrent={isHome ? "page" : undefined}
-                      className={`relative inline-flex min-h-11 items-center rounded-md px-2.5 py-2 text-[0.9rem] font-medium transition-colors hover:text-brand ${
-                        isHome ? "text-brand" : "text-ink"
+                      className={`relative inline-flex min-h-11 items-center rounded-md px-2.5 py-2 text-[0.9rem] font-medium transition-colors ${
+                        isHome ? homeActive : `${navText} ${navHover}`
                       }`}
                     >
                       {item.label}
                       {isHome && (
                         <span
-                          className="absolute inset-x-2.5 -bottom-0.5 h-0.5 rounded-full bg-brand"
+                          className={`absolute inset-x-2.5 -bottom-0.5 h-0.5 rounded-full ${
+                            onHero ? "bg-white" : "bg-brand"
+                          }`}
                           aria-hidden="true"
                         />
                       )}
@@ -192,13 +188,24 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a href="#kontakt" className="btn-primary hidden !min-h-11 !px-4 !text-sm sm:inline-flex">
+            <a
+              href="#kontakt"
+              className={
+                onHero
+                  ? "hidden min-h-10 items-center justify-center gap-2 rounded-full border border-white/35 bg-white/12 px-4 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/22 sm:inline-flex"
+                  : "btn-primary hidden !min-h-10 !px-4 !text-sm sm:inline-flex"
+              }
+            >
               <IconPhone className="h-4 w-4" />
               Kontaktujte nás
             </a>
             <button
               type="button"
-              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line text-ink xl:hidden"
+              className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border xl:hidden ${
+                onHero
+                  ? "border-white/40 bg-white/12 text-white backdrop-blur-sm"
+                  : "border-line text-ink"
+              }`}
               aria-expanded={mobileOpen}
               aria-controls={menuId}
               aria-label={mobileOpen ? "Zavrieť menu" : "Otvoriť menu"}
@@ -212,12 +219,12 @@ export function Header() {
 
       <div id={menuId} className={`xl:hidden ${mobileOpen ? "block" : "hidden"}`}>
         <div
-          className="fixed inset-0 top-[4.35rem] z-40 bg-ink/30 md:top-[calc(2.5rem+4.75rem)]"
+          className="fixed inset-0 top-[4.25rem] z-40 bg-ink/35 md:top-[4.5rem]"
           aria-hidden="true"
           onClick={() => setMobileOpen(false)}
         />
         <nav
-          className="absolute left-0 right-0 top-[4.35rem] z-50 max-h-[calc(100vh-4.35rem)] overflow-y-auto border-b border-line bg-white px-5 py-4 shadow-soft md:top-[calc(2.5rem+4.75rem)]"
+          className="absolute left-0 right-0 top-[4.25rem] z-50 max-h-[calc(100vh-4.25rem)] overflow-y-auto border-b border-line bg-white px-5 py-4 shadow-soft md:top-[4.5rem]"
           aria-label="Mobilná navigácia"
         >
           <ul className="flex flex-col gap-1">

@@ -1,6 +1,7 @@
 import { SITE } from "@/lib/content";
 import { IconArrow, IconPin } from "./Icons";
 import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
 export function Location() {
   return (
@@ -12,13 +13,13 @@ export function Location() {
       <div className="container-page">
         <Reveal>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="section-label justify-center">LOKALITA</p>
-            <h2
+            <SectionHeading
               id="location-heading"
-              className="mt-3 text-[1.75rem] font-bold tracking-[-0.02em] text-gray-dark md:text-[2.25rem]"
-            >
-              Kde nás nájdete
-            </h2>
+              parts={[
+                { text: "Kde nás " },
+                { text: "nájdete", accent: true },
+              ]}
+            />
             <p className="mt-4 inline-flex items-center justify-center gap-2 text-base text-ink-muted md:text-lg">
               <IconPin className="h-5 w-5 shrink-0 text-brand" />
               <span>{SITE.address}</span>
@@ -27,7 +28,7 @@ export function Location() {
         </Reveal>
 
         <Reveal delayMs={80}>
-          <div className="mt-10 overflow-hidden rounded-[1.4rem] border border-line/70 bg-white shadow-card">
+          <div className="mt-10 overflow-hidden rounded-[1.4rem] border border-line/70 bg-gray-soft shadow-card">
             <iframe
               title={`Mapa — ${SITE.name}, ${SITE.address}`}
               src={SITE.mapsEmbedUrl}

@@ -1,4 +1,5 @@
 import { QUICK_ACCESS, SITE } from "@/lib/content";
+import { SectionHeading } from "./SectionHeading";
 import {
   IconArrow,
   IconContact,
@@ -23,34 +24,29 @@ export function QuickAccess() {
     <section
       id="kontakt"
       aria-labelledby="quick-access-heading"
-      className="relative overflow-hidden bg-gray-light py-16 md:py-20"
+      className="relative bg-white py-16 md:py-24"
     >
-      <div className="pointer-events-none absolute inset-0 arch-lines" aria-hidden="true" />
       <div className="container-page relative">
         <Reveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="section-label justify-center">RÝCHLY PRÍSTUP</p>
-            <h2
-              id="quick-access-heading"
-              className="mt-3 text-balance text-[1.75rem] font-bold tracking-[-0.02em] text-ink md:text-[2.25rem]"
-            >
-              Čo potrebujete vybaviť?
-            </h2>
-          </div>
+          <SectionHeading
+            id="quick-access-heading"
+            parts={[
+              { text: "Čo potrebujete " },
+              { text: "vybaviť?", accent: true },
+            ]}
+          />
         </Reveal>
 
-        <div className="mt-10 grid items-stretch gap-6 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] lg:gap-8">
-          {/* Left: office hours + contact */}
+        <div className="mt-12 grid items-stretch gap-6 lg:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] lg:gap-8">
           <Reveal>
             <aside
               id="strankove-hodiny"
-              className="flex h-full flex-col rounded-[1.35rem] border border-line bg-gray p-6 shadow-soft md:p-8"
+              className="flex h-full flex-col rounded-[1.35rem] border border-brand/10 bg-[#EEF2ED] p-6 md:p-8"
               aria-labelledby="hours-heading"
             >
-              <p className="section-label">KONTAKT</p>
               <h3
                 id="hours-heading"
-                className="mt-3 text-[1.45rem] font-bold tracking-[-0.02em] text-ink md:text-[1.65rem]"
+                className="text-[1.45rem] font-bold tracking-[-0.02em] text-ink md:text-[1.65rem]"
               >
                 Stránkové hodiny
               </h3>
@@ -129,7 +125,6 @@ export function QuickAccess() {
             </aside>
           </Reveal>
 
-          {/* Right: 2×2 cards */}
           <ul className="grid gap-4 sm:grid-cols-2 sm:gap-5">
             {QUICK_ACCESS.map((item, index) => {
               const Icon = ICONS[item.icon];
@@ -156,7 +151,7 @@ export function QuickAccess() {
                     {item.external ? (
                       <a
                         href={item.href}
-                        className="group card-surface flex h-full flex-col p-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)] md:p-6"
+                        className="group card-surface flex h-full flex-col border border-line/50 p-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)] md:p-6"
                         rel="noopener noreferrer"
                         {...("download" in item && item.download ? { download: true } : {})}
                       >
@@ -165,7 +160,7 @@ export function QuickAccess() {
                     ) : (
                       <a
                         href={item.href}
-                        className="group card-surface flex h-full flex-col p-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)] md:p-6"
+                        className="group card-surface flex h-full flex-col border border-line/50 p-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)] md:p-6"
                       >
                         {content}
                       </a>
