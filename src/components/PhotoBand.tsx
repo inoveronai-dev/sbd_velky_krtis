@@ -14,16 +14,14 @@ export function PhotoBand() {
         objectPosition="50% 40%"
       />
 
-      {/* Neutral dark overlay — stronger on the left, fades toward the right */}
+      {/* Soft left readability gradient — matches hero balance; no local text box */}
       <div
         className="pointer-events-none absolute inset-0 z-[1] photo-band-overlay"
         aria-hidden="true"
       />
 
       <div className="parallax-foreground container-page relative z-[2] flex h-full flex-col justify-center gap-8 py-10 md:flex-row md:items-center md:justify-between md:gap-10">
-        <div className="photo-band-readable relative max-w-xl text-white">
-          {/* Soft local scrim — fades on all edges, not a hard box */}
-          <div className="pointer-events-none absolute -inset-x-6 -inset-y-5 -z-10 photo-band-scrim sm:-inset-x-10 sm:-inset-y-6" aria-hidden="true" />
+        <div className="photo-band-readable max-w-xl text-white">
           <h2
             id="photo-band-heading"
             className="text-balance text-[1.65rem] font-bold leading-[1.18] tracking-[-0.02em] md:text-[2.1rem]"
