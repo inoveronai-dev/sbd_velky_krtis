@@ -20,7 +20,7 @@ export function SectionHeading({
   return (
     <h2
       id={id}
-      className={`font-display text-balance text-[1.85rem] font-medium leading-[1.2] tracking-[-0.01em] md:text-[2.45rem] md:leading-[1.18] lg:text-[2.65rem] ${
+      className={`font-display text-balance text-[2.05rem] font-medium leading-[1.18] tracking-[-0.012em] md:text-[2.75rem] md:leading-[1.14] lg:text-[3.15rem] ${
         align === "center" ? "text-center" : "text-left"
       } ${className}`}
     >

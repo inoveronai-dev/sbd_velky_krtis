@@ -18,23 +18,17 @@ function AnnouncementCard({
     <DemoLink
       href={item.href}
       external
-      className="group flex w-[min(85vw,20.5rem)] shrink-0 flex-col rounded-card border border-line/60 bg-gray-soft p-6 transition hover:-translate-y-0.5 hover:border-brand/20 hover:bg-white hover:shadow-[0_18px_44px_-18px_rgba(24,63,45,0.34)]"
+      className="group flex w-[min(85vw,21rem)] shrink-0 flex-col border border-line/80 bg-white px-6 py-7 transition hover:border-brand/25"
       title={item.title}
       tabIndex={inertClone ? -1 : undefined}
       aria-hidden={inertClone || undefined}
     >
-      <span className="inline-flex w-fit rounded-lg bg-brand-soft px-3 py-1.5 text-sm font-semibold text-brand">
-        {item.dateLabel}
-      </span>
-      <span className="mt-4 text-lg font-bold leading-snug text-ink transition-colors group-hover:text-brand">
+      <span className="text-sm font-semibold tracking-wide text-brand">{item.dateLabel}</span>
+      <span className="mt-4 text-[1.15rem] font-semibold leading-snug text-ink transition-colors group-hover:text-brand md:text-[1.2rem]">
         {item.shortTitle}
       </span>
-      <span className="mt-2 flex-1 text-sm leading-relaxed text-ink-muted">
+      <span className="mt-3 flex-1 text-sm leading-relaxed text-ink-muted md:text-[0.95rem]">
         {item.excerpt}
-      </span>
-      <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand">
-        Čítať oznam
-        <IconArrow className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
       </span>
     </DemoLink>
   );
@@ -68,7 +62,7 @@ export function News() {
     <section
       id="oznamy"
       aria-labelledby="news-heading"
-      className="overflow-hidden bg-white py-16 md:py-24"
+      className="overflow-hidden bg-gray-soft py-20 md:py-28"
     >
       <div className="container-page">
         <Reveal>
@@ -93,12 +87,12 @@ export function News() {
         </Reveal>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-10 md:mt-12">
         {reducedMotion ? (
           <div className="container-page">
             <div
               ref={viewportRef}
-              className="flex gap-5 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-5"
               role="region"
               aria-labelledby={labelId}
               tabIndex={0}
@@ -113,7 +107,7 @@ export function News() {
             <div className="mt-5 flex gap-3">
               <button
                 type="button"
-                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line text-brand hover:bg-brand-soft"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line text-brand hover:bg-white"
                 onClick={() => scrollByCard(-1)}
                 aria-label="Predchádzajúci oznam"
               >
@@ -121,7 +115,7 @@ export function News() {
               </button>
               <button
                 type="button"
-                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line text-brand hover:bg-brand-soft"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line text-brand hover:bg-white"
                 onClick={() => scrollByCard(1)}
                 aria-label="Ďalší oznam"
               >
