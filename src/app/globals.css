@@ -258,11 +258,29 @@ body {
     0 12px 34px rgba(12, 28, 16, 0.38);
 }
 
-.hero-copy p {
+.hero-copy .hero-intro__text {
+  isolation: isolate;
   text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.55),
-    0 3px 12px rgba(0, 0, 0, 0.35),
-    0 8px 22px rgba(0, 0, 0, 0.22);
+    0 1px 1px rgba(0, 0, 0, 0.65),
+    0 2px 8px rgba(0, 0, 0, 0.48),
+    0 6px 20px rgba(0, 0, 0, 0.32);
+}
+
+/* Soft localized darkening behind the supporting line only — not a visible box */
+.hero-copy .hero-intro__text::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -1.1rem -1.4rem -1.25rem -1rem;
+  border-radius: 999px;
+  background: radial-gradient(
+    ellipse 95% 85% at 28% 48%,
+    rgba(8, 12, 14, 0.32) 0%,
+    rgba(8, 12, 14, 0.14) 42%,
+    rgba(8, 12, 14, 0) 72%
+  );
+  filter: blur(10px);
+  pointer-events: none;
 }
 
 /* ——— Splash (session intro) ——— */

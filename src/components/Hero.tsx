@@ -51,7 +51,7 @@ export function Hero() {
               Veľký Krtíš
             </span>
           </h1>
-          <p className="hero-intro__text mt-7 max-w-[27rem] text-[1.02rem] font-normal leading-[1.68] tracking-[0.012em] text-white/[0.88] sm:mt-9 sm:max-w-[29rem] sm:text-[1.14rem] sm:leading-[1.7]">
+          <p className="hero-intro__text relative mt-6 max-w-[24.5rem] text-[1.1rem] font-medium leading-[1.62] tracking-[0.008em] text-white sm:mt-7 sm:max-w-[26.5rem] sm:text-[1.22rem] sm:leading-[1.64] md:mt-8">
             {SITE.tagline}
           </p>
         </div>
