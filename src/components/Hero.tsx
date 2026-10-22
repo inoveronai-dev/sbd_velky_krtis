@@ -37,14 +37,15 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] hero-nav-overlay" aria-hidden="true" />
 
       <div className="parallax-foreground container-page relative z-[2] flex min-h-[85svh] flex-col justify-center pb-14 pt-28 md:min-h-[100dvh] md:pb-20 md:pt-28">
-        <div className="hero-copy hero-intro relative max-w-[34rem] text-left text-white md:max-w-[38rem]">
+        <div className="hero-copy hero-intro relative max-w-[36rem] text-left text-white md:max-w-[42rem]">
           <h1
             id="hero-heading"
-            className="hero-intro__title text-balance text-[2.15rem] font-extrabold leading-[1.08] tracking-[-0.03em] sm:text-[2.75rem] md:text-[3.35rem] lg:text-[3.6rem]"
+            className="hero-intro__title font-display text-[2.4rem] font-medium leading-[1.14] tracking-[-0.016em] sm:text-[3rem] sm:leading-[1.12] md:text-[3.65rem] md:leading-[1.1] lg:text-[4rem]"
           >
-            {SITE.name}
+            <span className="block">Stavebné bytové družstvo</span>
+            <span className="hero-intro__place mt-[0.12em] block">Veľký Krtíš</span>
           </h1>
-          <p className="hero-intro__text mt-7 max-w-[30rem] text-[1.05rem] font-medium leading-[1.55] text-white/95 sm:mt-8 sm:text-[1.2rem]">
+          <p className="hero-intro__text mt-7 max-w-[27rem] text-[1.02rem] font-normal leading-[1.68] tracking-[0.012em] text-white/[0.88] sm:mt-9 sm:max-w-[29rem] sm:text-[1.14rem] sm:leading-[1.7]">
             {SITE.tagline}
           </p>
         </div>
