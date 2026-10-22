@@ -77,9 +77,9 @@ export function QuickAccess() {
               </ul>
 
               <dl className="mt-7 space-y-5">
-                <div className="flex gap-3">
+                <div className="flex gap-3.5">
                   <span className="mt-0.5 inline-flex shrink-0 text-brand">
-                    <IconPhone className="h-5 w-5" />
+                    <IconPhone className="h-6 w-6" />
                   </span>
                   <div>
                     <dt className="text-sm text-ink-muted">{SITE.phones.secretariat.label}</dt>
@@ -93,9 +93,9 @@ export function QuickAccess() {
                     </dd>
                   </div>
                 </div>
-                <div className="flex gap-3">
+                <div className="flex gap-3.5">
                   <span className="mt-0.5 inline-flex shrink-0 text-brand">
-                    <IconMail className="h-5 w-5" />
+                    <IconMail className="h-6 w-6" />
                   </span>
                   <div>
                     <dt className="text-sm text-ink-muted">E-mail</dt>
@@ -109,9 +109,9 @@ export function QuickAccess() {
                     </dd>
                   </div>
                 </div>
-                <div className="flex gap-3">
+                <div className="flex gap-3.5">
                   <span className="mt-0.5 inline-flex shrink-0 text-brand">
-                    <IconPin className="h-5 w-5" />
+                    <IconPin className="h-6 w-6" />
                   </span>
                   <div>
                     <dt className="text-sm text-ink-muted">Adresa</dt>
@@ -145,16 +145,16 @@ export function QuickAccess() {
                       className="group flex h-full flex-col border border-line/70 bg-white p-5 transition duration-300 hover:border-brand/25 hover:shadow-soft md:p-5"
                     >
                       <span className="inline-flex text-brand">
-                        <Icon className="h-6 w-6" />
+                        <Icon className="h-8 w-8" />
                       </span>
-                      <span className="mt-3 text-base font-semibold text-ink md:text-[1.05rem]">
+                      <span className="mt-3.5 text-base font-semibold text-ink md:text-[1.05rem]">
                         {item.title}
                       </span>
                       <span className="mt-1.5 flex-1 text-sm leading-relaxed text-ink-muted">
                         {item.description}
                       </span>
-                      <span className="mt-4 inline-flex h-8 w-8 items-center justify-center self-end rounded-full border border-brand/30 text-brand transition group-hover:border-brand group-hover:bg-brand group-hover:text-white">
-                        <IconArrow className="h-3.5 w-3.5" />
+                      <span className="mt-4 inline-flex h-10 w-10 items-center justify-center self-end rounded-full border border-brand/30 text-brand transition group-hover:border-brand group-hover:bg-brand group-hover:text-white">
+                        <IconArrow className="h-4 w-4" />
                       </span>
                     </DemoLink>
                   </Reveal>
