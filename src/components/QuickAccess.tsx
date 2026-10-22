@@ -148,7 +148,7 @@ export function QuickAccess() {
 
               return (
                 <li key={item.title} className="min-h-0">
-                  <Reveal delayMs={index * 50} className="h-full">
+                  <Reveal delayMs={80 + index * 90} className="h-full">
                     <DemoLink
                       href={item.href}
                       external={item.external}

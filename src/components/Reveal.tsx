@@ -6,6 +6,8 @@ type RevealProps = {
   children: ReactNode;
   className?: string;
   delayMs?: number;
+  /** Subtle scale for photography; default is fade + translate only. */
+  variant?: "default" | "media";
 };
 
 /**
@@ -13,7 +15,12 @@ type RevealProps = {
  * Motion only applies when JS confirms the element starts below the fold.
  * A failsafe timeout guarantees content never stays hidden.
  */
-export function Reveal({ children, className = "", delayMs = 0 }: RevealProps) {
+export function Reveal({
+  children,
+  className = "",
+  delayMs = 0,
+  variant = "default",
+}: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -55,7 +62,7 @@ export function Reveal({ children, className = "", delayMs = 0 }: RevealProps) {
     observer.observe(node);
 
     // Never leave content permanently invisible if the observer misses.
-    const failsafe = window.setTimeout(reveal, 1200);
+    const failsafe = window.setTimeout(reveal, 1800);
 
     return () => {
       observer.disconnect();
@@ -68,7 +75,7 @@ export function Reveal({ children, className = "", delayMs = 0 }: RevealProps) {
   return (
     <div
       ref={ref}
-      className={`reveal ${className}`}
+      className={`reveal ${variant === "media" ? "reveal--media" : ""} ${className}`}
       style={delayMs ? { transitionDelay: `${delayMs}ms` } : undefined}
     >
       {children}

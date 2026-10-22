@@ -85,11 +85,19 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-brand px-5 text-sm font-semibold text-white transition hover:bg-brand-deep;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-brand px-5 text-sm font-semibold text-white transition duration-300 ease-out hover:bg-brand-deep;
+  }
+
+  .btn-primary svg {
+    @apply transition-transform duration-300 ease-out;
+  }
+
+  .btn-primary:hover svg {
+    transform: translateX(2px);
   }
 
   .btn-secondary-dark {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-brand/30 bg-white px-5 text-sm font-semibold text-brand transition hover:border-brand hover:bg-brand-soft;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-brand/30 bg-white px-5 text-sm font-semibold text-brand transition duration-300 ease-out hover:border-brand hover:bg-brand-soft;
   }
 }
 
@@ -105,16 +113,23 @@ body {
 
   .reveal.reveal-pending {
     opacity: 0;
-    transform: translateY(0.75rem);
+    transform: translateY(1.25rem);
     transition:
-      opacity 0.55s var(--ease-out),
-      transform 0.55s var(--ease-out);
+      opacity 0.7s var(--ease-out),
+      transform 0.7s var(--ease-out);
+  }
+
+  .reveal.reveal-pending.reveal--media {
+    transform: translateY(1.1rem) scale(1.02);
+    transition:
+      opacity 0.8s var(--ease-out),
+      transform 0.8s var(--ease-out);
   }
 
   .reveal.reveal-pending.is-visible,
   .reveal.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 
@@ -230,6 +245,135 @@ body {
     0 1px 2px rgba(0, 0, 0, 0.6),
     0 2px 8px rgba(0, 0, 0, 0.4),
     0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* ——— Splash (session intro) ——— */
+html.sbd-splash-pending,
+html.sbd-splash-active {
+  overflow: hidden;
+}
+
+html.sbd-splash-pending::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: #414141 url("/images/SBDlogo-light.svg") center / min(11rem, 42vw) no-repeat;
+  pointer-events: none;
+}
+
+.sbd-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.sbd-splash__panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #414141;
+  transform: translateY(0);
+  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
+  will-change: transform;
+}
+
+.sbd-splash--exit .sbd-splash__panel {
+  transform: translateY(-105%);
+}
+
+.sbd-splash__mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.35rem;
+}
+
+.sbd-splash__logo {
+  opacity: 0;
+  transform: scale(0.92);
+  animation: sbd-splash-logo 0.7s var(--ease-out) 0.05s forwards;
+}
+
+.sbd-splash__line {
+  display: block;
+  width: min(11rem, 42vw);
+  height: 2px;
+  border-radius: 999px;
+  background: #26702d;
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: sbd-splash-line 0.55s var(--ease-out) 0.35s forwards;
+  box-shadow: 0 0 0 1px rgba(38, 112, 45, 0.12);
+}
+
+@keyframes sbd-splash-logo {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sbd-splash-line {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Hero copy staggered after splash (or immediately when splash skipped) */
+.hero-intro__title,
+.hero-intro__text {
+  opacity: 1;
+  transform: none;
+}
+
+html.sbd-splash-pending .hero-intro__title,
+html.sbd-splash-pending .hero-intro__text,
+html.sbd-splash-active .hero-intro__title,
+html.sbd-splash-active .hero-intro__text {
+  opacity: 0;
+  transform: translateY(1.15rem);
+}
+
+html.sbd-hero-ready .hero-intro__title,
+html.sbd-hero-ready .hero-intro__text {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.75s var(--ease-out),
+    transform 0.75s var(--ease-out);
+}
+
+html.sbd-hero-ready .hero-intro__text {
+  transition-delay: 0.14s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.sbd-splash-pending::before {
+    display: none;
+  }
+
+  .sbd-splash,
+  .sbd-splash__panel,
+  .sbd-splash__logo,
+  .sbd-splash__line {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html.sbd-splash-pending .hero-intro__title,
+  html.sbd-splash-pending .hero-intro__text,
+  html.sbd-splash-active .hero-intro__title,
+  html.sbd-splash-active .hero-intro__text,
+  html.sbd-hero-ready .hero-intro__title,
+  html.sbd-hero-ready .hero-intro__text {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* Soft left overlay — image has no heavy baked darkening; match hero balance */

@@ -30,6 +30,7 @@ export default {
       },
       fontFamily: {
         sans: ["var(--font-manrope)", "Segoe UI", "sans-serif"],
+        display: ["var(--font-playfair)", "Georgia", "Times New Roman", "serif"],
       },
       maxWidth: {
         content: "72rem",

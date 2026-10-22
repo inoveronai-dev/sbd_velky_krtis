@@ -41,7 +41,7 @@ export function Services() {
           {SERVICE_GROUPS.map((group, groupIndex) => {
             const Icon = GROUP_ICONS[group.id as keyof typeof GROUP_ICONS] ?? IconGear;
             return (
-              <Reveal key={group.id} delayMs={groupIndex * 70}>
+              <Reveal key={group.id} delayMs={90 + groupIndex * 100}>
                 <article className="card-surface flex h-full flex-col border border-line/40 p-6 md:p-7">
                   <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-soft text-brand">
                     <Icon className="h-6 w-6" />

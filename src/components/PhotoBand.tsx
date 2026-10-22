@@ -24,7 +24,7 @@ export function PhotoBand() {
         <div className="photo-band-readable max-w-xl text-white">
           <h2
             id="photo-band-heading"
-            className="text-balance text-[1.65rem] font-bold leading-[1.18] tracking-[-0.02em] md:text-[2.1rem]"
+            className="font-display text-balance text-[1.75rem] font-medium leading-[1.22] tracking-[-0.01em] md:text-[2.25rem] lg:text-[2.45rem]"
           >
             {PHOTO_BAND.heading}
           </h2>

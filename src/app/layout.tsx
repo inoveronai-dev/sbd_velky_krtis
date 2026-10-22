@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+
+/** Matches BYTEX Nitra section headings (Playfair Display). */
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -25,7 +34,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sk">
-      <body className={`${manrope.variable} bg-white font-sans antialiased`}>
+      <body className={`${manrope.variable} ${playfair.variable} bg-white font-sans antialiased`}>
+        <Script
+          id="sbd-splash-gate"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(sessionStorage.getItem('sbd-vk-splash-seen'))return;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;document.documentElement.classList.add('sbd-splash-pending');}catch(e){}})();`,
+          }}
+        />
         {children}
       </body>
     </html>

@@ -1,10 +1,24 @@
+"use client";
+
+import { useEffect } from "react";
 import { HERO_IMAGE, SITE } from "@/lib/content";
 import { ParallaxMedia } from "./ParallaxMedia";
+import { signalHeroReady } from "./SplashScreen";
 
 export function Hero() {
+  useEffect(() => {
+    // If splash skipped or already finished before mount, ensure hero text can reveal.
+    const ready = document.documentElement.classList.contains("sbd-hero-ready");
+    const pending = document.documentElement.classList.contains("sbd-splash-pending");
+    const active = document.documentElement.classList.contains("sbd-splash-active");
+    if (!ready && !pending && !active) {
+      signalHeroReady();
+    }
+  }, []);
+
   return (
     <section
-      className="parallax-section relative isolate min-h-[min(88vw,36rem)] md:min-h-[42rem] lg:min-h-[46rem]"
+      className="parallax-section relative isolate min-h-[85svh] md:min-h-[100dvh]"
       aria-labelledby="hero-heading"
     >
       <ParallaxMedia
@@ -22,15 +36,15 @@ export function Hero() {
       {/* Top nav readability gradient — fades out within ~200px; does not affect headline area */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] hero-nav-overlay" aria-hidden="true" />
 
-      <div className="parallax-foreground container-page relative z-[2] flex min-h-[min(88vw,36rem)] flex-col justify-end pb-12 pt-28 md:min-h-[42rem] md:justify-center md:pb-20 md:pt-28 lg:min-h-[46rem]">
-        <div className="hero-copy relative max-w-[34rem] text-left text-white md:max-w-[38rem]">
+      <div className="parallax-foreground container-page relative z-[2] flex min-h-[85svh] flex-col justify-center pb-14 pt-28 md:min-h-[100dvh] md:pb-20 md:pt-28">
+        <div className="hero-copy hero-intro relative max-w-[34rem] text-left text-white md:max-w-[38rem]">
           <h1
             id="hero-heading"
-            className="text-balance text-[2.15rem] font-extrabold leading-[1.08] tracking-[-0.03em] sm:text-[2.75rem] md:text-[3.35rem] lg:text-[3.6rem]"
+            className="hero-intro__title text-balance text-[2.15rem] font-extrabold leading-[1.08] tracking-[-0.03em] sm:text-[2.75rem] md:text-[3.35rem] lg:text-[3.6rem]"
           >
             {SITE.name}
           </h1>
-          <p className="mt-7 max-w-[30rem] text-[1.05rem] font-medium leading-[1.55] text-white/95 sm:mt-8 sm:text-[1.2rem]">
+          <p className="hero-intro__text mt-7 max-w-[30rem] text-[1.05rem] font-medium leading-[1.55] text-white/95 sm:mt-8 sm:text-[1.2rem]">
             {SITE.tagline}
           </p>
         </div>

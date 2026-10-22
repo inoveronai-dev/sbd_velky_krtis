@@ -12,7 +12,7 @@ export function About() {
     >
       <div className="container-page">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          <Reveal className="relative lg:col-span-6">
+          <Reveal className="relative lg:col-span-6" variant="media">
             <div className="relative aspect-[4/3] overflow-hidden rounded-[1.4rem] shadow-card">
               <Image
                 src={ABOUT.image.src}
@@ -24,7 +24,7 @@ export function About() {
             </div>
           </Reveal>
 
-          <Reveal className="lg:col-span-6 lg:pl-2" delayMs={80}>
+          <Reveal className="lg:col-span-6 lg:pl-2" delayMs={120}>
             <SectionHeading
               id="about-heading"
               align="left"

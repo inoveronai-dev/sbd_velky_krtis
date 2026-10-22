@@ -10,7 +10,7 @@ type SectionHeadingProps = {
   align?: "left" | "center";
 };
 
-/** Two-tone section title: ink gray + brand green accents via styled spans. */
+/** Two-tone editorial section title — Playfair Display + brand gray/green. */
 export function SectionHeading({
   id,
   parts,
@@ -20,7 +20,7 @@ export function SectionHeading({
   return (
     <h2
       id={id}
-      className={`text-balance text-[1.75rem] font-bold leading-[1.15] tracking-[-0.025em] md:text-[2.25rem] ${
+      className={`font-display text-balance text-[1.85rem] font-medium leading-[1.2] tracking-[-0.01em] md:text-[2.45rem] md:leading-[1.18] lg:text-[2.65rem] ${
         align === "center" ? "text-center" : "text-left"
       } ${className}`}
     >

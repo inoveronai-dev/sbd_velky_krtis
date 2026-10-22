@@ -27,7 +27,7 @@ export function Location() {
           </div>
         </Reveal>
 
-        <Reveal delayMs={80}>
+        <Reveal delayMs={120} variant="media">
           <div className="mt-10 overflow-hidden rounded-[1.4rem] border border-line/70 bg-gray-soft shadow-card">
             <iframe
               title={`Mapa — ${SITE.name}, ${SITE.address}`}
