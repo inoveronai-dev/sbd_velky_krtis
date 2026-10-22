@@ -40,10 +40,16 @@ export function Hero() {
         <div className="hero-copy hero-intro relative max-w-[36rem] text-left text-white md:max-w-[42rem]">
           <h1
             id="hero-heading"
-            className="hero-intro__title font-display text-[2.4rem] font-medium leading-[1.14] tracking-[-0.016em] sm:text-[3rem] sm:leading-[1.12] md:text-[3.65rem] md:leading-[1.1] lg:text-[4rem]"
+            className="hero-intro__title font-display text-[2.35rem] font-medium leading-[1.14] tracking-[-0.016em] sm:text-[2.85rem] sm:leading-[1.12] md:text-[3.45rem] md:leading-[1.1] lg:text-[3.75rem]"
           >
-            <span className="block">Stavebné bytové družstvo</span>
-            <span className="hero-intro__place mt-[0.12em] block">Veľký Krtíš</span>
+            {/* Intentional breaks: one line from md up; stacked on small screens */}
+            <span className="block md:whitespace-nowrap">
+              <span className="block md:inline">Stavebné bytové </span>
+              <span className="block md:inline">družstvo</span>
+            </span>
+            <span className="hero-intro__place mt-[0.14em] block md:mt-[0.1em]">
+              Veľký Krtíš
+            </span>
           </h1>
           <p className="hero-intro__text mt-7 max-w-[27rem] text-[1.02rem] font-normal leading-[1.68] tracking-[0.012em] text-white/[0.88] sm:mt-9 sm:max-w-[29rem] sm:text-[1.14rem] sm:leading-[1.7]">
             {SITE.tagline}
